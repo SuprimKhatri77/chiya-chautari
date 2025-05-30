@@ -1,4 +1,6 @@
 import ChiyaRecipeSection from "./components/ChiyaRecipe";
+import MenuSection from "./components/Menu";
+import NachutauneSection from "./components/Nachutaune";
 import StorySection from "./components/Story";
 
 export default function Home() {
@@ -25,6 +27,13 @@ export default function Home() {
       <section className="">
         <ChiyaRecipeSection />
       </section>
+      <section className="">
+        <MenuSection />
+      </section>
+      <section className="">
+        <NachutauneSection />
+      </section>
+
     </>
   );
 }

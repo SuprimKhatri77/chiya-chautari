@@ -30,7 +30,7 @@ export default function Navbar() {
             <nav className="relative z-30 flex items-center justify-between px-7 md:px-12 py-4">
                 <div>
                     <Image
-                        src="/logo.png"
+                        src="/logo.jpeg"
                         alt="logo"
                         height={82}
                         width={220}
@@ -57,7 +57,7 @@ export default function Navbar() {
                 <nav className="relative z-20 flex items-center justify-between px-1 md:px-12 py-4 bg-black/40">
                     <div>
                         <Image
-                            src="/logo.png"
+                            src="/logo.jpeg"
                             alt="logo"
                             height={82}
                             width={220}

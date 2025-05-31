@@ -25,15 +25,16 @@ export default function Navbar() {
     }, []);
     useEffect(() => {
         if (navShown) {
-            document.body.style.height = "100vh"
+            document.body.style.minHeight = "100vh"
             document.body.style.overflow = "hidden"
+            window.scrollTo({ top: 0, behavior: 'instant' });
         } else {
-            document.body.style.height = ""
+            document.body.style.minHeight = ""
             document.body.style.overflow = ""
         }
 
         return () => {
-            document.body.style.height = ""
+            document.body.style.minHeight = ""
             document.body.style.overflow = ""
         }
     }, [navShown])
@@ -50,8 +51,8 @@ export default function Navbar() {
 
             {/* <div className="absolute inset-0 bg-black/20 z-10"></div> */}
 
-            <nav className="relative z-40 flex items-center justify-between px-7 md:px-12 py-4">
-                <Link href="/">
+            <nav className="relative z-[80] flex items-center justify-between px-7 md:px-12 py-4">
+                <Link href="/" onClick={() => setIsNavShown(false)}>
                     <Image
                         src="/logo.png"
                         alt="logo"
@@ -89,9 +90,9 @@ export default function Navbar() {
 
             </nav>
 
-            <div className={`fixed w-full z-50 top-0 ${showSticky ? "-translate-y-0" : "-translate-y-full"} transition-all duration-400 ease-in-out`}>
+            <div className={` fixed w-full z-[70] top-0 ${showSticky ? "-translate-y-0" : "-translate-y-full"} transition-all duration-400 ease-in-out`}>
 
-                <nav className="relative z-20 flex items-center justify-between px-1 md:px-12 py-4 bg-black/40">
+                <nav className="relative z-30 flex items-center justify-between px-1 md:px-12 py-4 bg-black/40">
                     <Link href="/">
                         <Image
                             src="/logo.png"
@@ -103,11 +104,24 @@ export default function Navbar() {
                     </Link>
 
                     <div className="flex items-center gap-4 text-white">
-                        <FaFacebook className="hidden cursor-pointer text-2xl hover:text-red-500 transition-colors md:flex" />
-                        <FaInstagram className="hidden cursor-pointer text-2xl hover:text-red-500 transition-colors md:flex" />
+                        {
+                            !navShown && (
+                                <>
+
+                                    <FaFacebook className="hidden md:flex cursor-pointer text-3xl hover:text-yellow-500 transition-colors" />
+                                    <FaInstagram className="hidden md:flex cursor-pointer text-3xl hover:text-yellow-500 transition-colors" />
+                                </>
+                            )
+                        }
 
                         <div className="flex items-center gap-2 hover:text-red-500 cursor-pointer">
-                            <Menu size={24} />
+                            {navShown ? (
+
+                                <X size={24} className="curosor-pointer text-black" onClick={() => setIsNavShown(prev => !prev)} />
+                            ) : (
+
+                                <Menu size={24} className="curosor-pointer hover:text-yellow-500" onClick={() => setIsNavShown(prev => !prev)} />
+                            )}
                             <p className="hidden sm:block text-lg font-semibold">
                                 <span className="text-yellow-500">Me</span>
                                 <span className="text-green-500">nu</span>
@@ -121,10 +135,10 @@ export default function Navbar() {
             {
                 navShown && (
 
-                    <div className="absolute z-30 min-h-screen w-full bg-white pt-[150px]">
+                    <div className="absolute z-[70] min-h-screen w-full bg-white pt-[150px]">
                         <div className="max-w-[600px] mx-auto flex flex-col gap-2 items-center justify-center">
                             <Separator />
-                            <Link href="/" className="py-3 text-4xl text-red-700 sans">Home</Link>
+                            <Link href="/" className="py-3 text-4xl text-red-700 sans" onClick={() => setIsNavShown(false)}>Home</Link>
                             <Separator />
 
                             <Accordion type="single" collapsible className="w-full flex flex-col items-center">

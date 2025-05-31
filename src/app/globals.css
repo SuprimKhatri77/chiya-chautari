@@ -138,3 +138,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.bounce {
+  animation: scaleInOut 1500ms infinite ease-in-out;
+}
+
+@keyframes scaleInOut {
+  0% {
+    scale: 1;
+  }
+  50% {
+    scale: 1.25;
+  }
+  100% {
+    scale: 1;
+  }
+}
